@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Global styles for StellarSwap UI.
+  Add any base resets or CSS variables here.
+  Tailwind utility classes should be preferred in components.
+*/
+
+:root {
+  --background: #0F0F1A;
+  --foreground: #F5F5FF;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}

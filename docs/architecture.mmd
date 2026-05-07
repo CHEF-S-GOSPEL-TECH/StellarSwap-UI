@@ -1,0 +1,34 @@
+graph TD
+    subgraph Browser
+        A[User] -->|types amount| B[SwapForm / LiquidityPanel]
+        B -->|useWallet| C[WalletProvider\nStellar Wallets Kit]
+        B -->|useQuote| D[useQuote hook]
+        B -->|useReserves| E[useReserves hook]
+        B -->|useTokenBalance| F[useTokenBalance hook]
+    end
+
+    subgraph SDK ["SDK (sdk/src — core repo)"]
+        G[PairClient]
+        H[RouterClient]
+        I[library.ts\nsortTokens / quote]
+    end
+
+    subgraph Stellar Network
+        J[Soroban RPC]
+        K[Pair Contract\nreserve_a × reserve_b = k]
+        L[LP Token Contract\nSEP-41]
+        M[Factory Contract\ncreate_pair / get_pair]
+        N[Freighter Wallet\nbrowser extension]
+    end
+
+    D -->|getQuote| G
+    E -->|getReserves| G
+    F -->|balance| G
+    G -->|simulateTransaction| J
+    H -->|buildSwapTx| G
+    B -->|buildSwapTx| H
+    J -->|invokes| K
+    K -->|mint / burn| L
+    M -->|deploys| K
+    C -->|signTransaction| N
+    C -->|sendTransaction XDR| J

@@ -1,0 +1,23 @@
+# StellarSwap UI
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Next.js
+.next/
+out/
+
+# Node
+node_modules/
+
+# Build
+dist/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+next-env.d.ts
